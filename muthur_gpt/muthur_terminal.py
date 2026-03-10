@@ -2,9 +2,10 @@ import os
 import random
 import subprocess
 import re
+import sys
 import time
 from termcolor import colored
-
+from simpleaudio import WaveObject
 from muthur_gpt import constants
 
 class MuthurTerminal():
@@ -17,7 +18,10 @@ class MuthurTerminal():
         self.mute = mute
 
     def clear(self):
-        os.system("clear")
+        if sys.platform.startswith('win'):
+            os.system("cls")
+        else:
+            os.system("clear")
 
     def print_header(self, header_override=None):
         if header_override:
@@ -81,21 +85,19 @@ class MuthurTerminal():
     def print_slow(self, text, speed=None, sound=True):
         if not speed:
             speed = self.config.get(constants.CONFIG_KEY_DEFAULT_SPEED)
-        process = self.play_sound("typing_long")
+        play_object = self.play_sound("typing_long")
         for char in text:
             print(char, end="", flush=True)
             time.sleep(speed)
             if sound and not self.mute:
-                poll = process.poll()
-                if poll is not None:
-                    # Sound is over
-                    process = self.play_sound("subtle_long_type")
+                if not play_object.is_playing():
+                    play_object = self.play_sound("subtle_long_type")
                 elif char == "\n":
                     return_sound_name = "loud_type_start"
-                    process = self.play_sound(return_sound_name)
+                    play_object = self.play_sound(return_sound_name)
         self.print_space(1)
-        if process:
-            process.kill()
+        if play_object.is_playing():
+            play_object.stop()
 
     def print_reply(self, text):
         """
@@ -135,18 +137,17 @@ class MuthurTerminal():
     def print_slow_lines(self, text, speed=None, sound=True):
         if not speed:
             speed = self.config.get(constants.CONFIG_KEY_DEFAULT_SPEED)
-        process = self.play_sound("typing_long")
+        play_object = self.play_sound("typing_long")
         for line in text.split("\n"):
             print(line)
             time.sleep(speed)
             if sound and not self.mute:
-                poll = process.poll()
-                if poll is not None:
+                if not play_object.is_playing():
                     # Sound is over
-                    process = self.play_sound("subtle_long_type")
+                    play_object = self.play_sound("subtle_long_type")
         self.print_space(1)
-        if process:
-            process.kill()
+        if play_object.is_playing():
+            play_object.stop()
 
     def print_previous_input(self, user_input):
         self.print_space(constants.PREV_INPUT_TOP_MARGIN)
@@ -173,7 +174,7 @@ class MuthurTerminal():
             sound_path = self.path_resolver.get_sound_path(sound_name)
             if not sound_path:
                 raise Exception(f"Sound file unresolved for {sound_name}")
-            return subprocess.Popen(["afplay", sound_path])
+            return WaveObject.from_wave_file(sound_path).play()
 
     def display_image(self, image_name):
         """
@@ -182,7 +183,7 @@ class MuthurTerminal():
         self.play_sound("screen_display")
 
         try:
-            with open(self.path_resolver.get_ascii_path(image_name), "r") as f:
+            with open(self.path_resolver.get_ascii_path(image_name), "r", encoding="utf-8") as f:
                 ascii_image = f.read()
         except:
             # If image isn't readable or path doesn't exist

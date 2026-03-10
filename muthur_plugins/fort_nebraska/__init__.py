@@ -22,9 +22,9 @@ class FortNebraskaPlugin(Plugin):
     def __init__(self, config, terminal, path_resolver):
         super().__init__(
             FortNebraskaPlugin.NAME, config, terminal, path_resolver)
-        with open(self.path_resolver.get_ascii_path("SEEGSON_LOGO"), "r") as f:
+        with open(self.path_resolver.get_ascii_path("SEEGSON_LOGO"), "r", encoding="utf-8") as f:
             self.logo = f.read()
-        with open(self.path_resolver.get_ascii_path("BOOT_TEXT"), "r") as f:
+        with open(self.path_resolver.get_ascii_path("BOOT_TEXT"), "r", encoding="utf-8") as f:
             self.boot_text = f.read()
 
     def filter_plugin_prompt(self, prompt):

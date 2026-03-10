@@ -30,10 +30,10 @@ class CronusLifeSupportPlugin(Plugin):
             CronusLifeSupportPlugin.NAME, config, terminal, path_resolver)
 
         self.life_support = LifeSupportTracker(config)
-        with open(self.path_resolver.get_ascii_path("WEYLAND_LOGO"), "r") as f:
+        with open(self.path_resolver.get_ascii_path("WEYLAND_LOGO"), "r", encoding="utf-8") as f:
             self.logo = f.read()
 
-        with open(self.path_resolver.get_ascii_path("BOOT_TEXT"), "r") as f:
+        with open(self.path_resolver.get_ascii_path("BOOT_TEXT"), "r", encoding="utf-8") as f:
             self.boot_text = f.read()
 
     def draw_secondary_header(self):
