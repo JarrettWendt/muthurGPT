@@ -17,7 +17,7 @@ This was a quick weekend project, but feel free to add new plugins or features. 
 ## Setup
 
 ### Suggested terminal emulator
-This package outputs directly to stdout. I recommend running this on a terminal with a scanline aesthetic, such as cool-retro-terminal.
+This package outputs directly to stdout. I recommend running this on a terminal with a scanline aesthetic, such as [cool-retro-term (Linux/Mac)](https://github.com/Swordfish90/cool-retro-term) or [windows-terminal-shaders (Windows)](https://github.com/Hammster/windows-terminal-shaders).
 
 I recommend using a rather large terminal font size to get the right look. The included ascii art assumes a minimum terminal width of 64 characters. That said, I wouldn't recommend going higher than 100.
 
@@ -28,7 +28,7 @@ This is all python, so installation is pretty straightforward.
 2) Until you get your look right, I recommend specifying ``debug=true`` in the config so that it doesn't access openAI while you're iterating on cool-retro-terminal settings/etc.
 3) Add the muthur script in the bin dir to your path or just run it directly. Run ``muthur --plugin cronus`` for the Cronus' onboard MU/TH/UR or ``muthur --plugin montero`` for the montero.
 
-To be honest, I haven't attempted to run this from another machine yet, so I might have missed some steps. Because I'm doing sound in a dumb way for now, it will be mac dependant unless you update play_sound() in terminal.py
+To be honest, I haven't attempted to run this from another machine yet, so I might have missed some steps.
 
 ### Config
 You can configure MU/TH/UR plugins for different acts and story points. For example, the Cronus plugin can be configured to acknowledge that the characters have already woken from cryo. Take a look at the config file to see what else is configurable.
@@ -63,7 +63,6 @@ While running the program, the user may use commands to interact with the tool. 
  - ``!save`` allows you to save the current status of the interaction. Use ``!save name`` to choose you name for the savefile
 
 ## Outstanding work (in vague order of priority)
-- Output sound in less dumb way.
 - Allow for user to quit MU/TH/UR from within MU/TH/UR using natural language.
 - Add a mode to allow it to print exact text as defined in a config or text document, rather than interacting with bot (user request)
 - Make prompts configurable with string replacements.
