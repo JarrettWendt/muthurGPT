@@ -81,7 +81,7 @@ class MonteroPlugin(Plugin):
         if self.config.get("inform_salvage"):
             prompt += "\nUPDATE: When mentioning the Cronus for the first time, you must inform the crew that a salvage operation is mandated under Weyland Yutani company rules. These are their priorities:\n1) Recover scientific data and samples from the USCSS Cronus.\n2) Escort the salvaged Cronus to Anchorhead or another W-Y facility.\n3) Save crew members on the Cronus."
         if self.config.get("hull_breach"):
-            prompt += "\nUPDATE: The Montero collides with a metallic object of approximate size between 50-150m, which could be the source of signal. The Montero has multiples hull breaches near the bow. These have been contained to three out of four of the Montero's lower deck storage compartments. Air pressure elsewhere in maintained. Navigation system is damaged. Radar array is damaged."
+            prompt += "\nUPDATE: The Montero collides with a metallic object of approximate size between 50-150m, which could be the source of signal. The Montero has multiples hull breaches near the bow. These have been contained to three out of four of the Montero's lower deck storage compartments. Air pressure elsewhere in maintained. Navigation system is damaged. Radar array is damaged. FTL drive is damaged."
         if self.config.get("superficial_damage"):
             prompt += "\nUPDATE: The Montero collides with a metallic object of approximate size between 50-150m, which could be the source of signal. The Montero has superficial damage near the bow and damage to a port-side back-up communications antenna."
         return prompt
