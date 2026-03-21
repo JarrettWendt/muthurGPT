@@ -63,8 +63,8 @@ class MuthurController():
             print()
 
     def handle_command(self, command: str):
-        if command.startswith("!exit"):
-            print("Exiting MU/TH/UR....")  # implement saves!
+        if command.startswith(("!exit", "!stop", "!quit")):
+            print("Exiting MU/TH/UR....")  # TODO: prompt "would you like to save?" with a --force option to skip the prompt
             exit()
         elif command.startswith("!print"):
             parts = command.split()
