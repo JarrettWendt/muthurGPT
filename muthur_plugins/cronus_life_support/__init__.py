@@ -128,7 +128,7 @@ class CronusLifeSupportPlugin(Plugin):
         if "goo" in user_input:
             return 'Please input COMMAND SEQUENCE OVERRIDE CODE'
         elif "map" in user_input:
-            return "Map of decks A and B: <IMG:DECK_A> <IMG:DECK_B>"
+            return "Map of decks A and B: <IMG:CRONUS_DECK_A> <IMG:CRONUS_DECK_B>"
         elif "life" in user_input:
             return "Enabling life support.\n<LIFE_SUPPORT_ENABLED>"
         elif "<LIFE_SUPPORT_ONLINE>" in user_input:

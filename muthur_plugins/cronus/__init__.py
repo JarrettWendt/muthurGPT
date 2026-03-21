@@ -107,7 +107,7 @@ class CronusPlugin(Plugin):
         if "goo" in user_input.lower():
             return 'Please input COMMAND SEQUENCE OVERRIDE CODE'
         elif "map" in user_input.lower():
-            return "Map of decks A and B: <IMG:DECK_A> <IMG:DECK_B>"
+            return "Map of decks A and B: <IMG:CRONUS_DECK_A> <IMG:CRONUS_DECK_B>"
         elif "life" in user_input.lower():
             return "Enabling life support."
         return ""
